@@ -1,43 +1,78 @@
 // should be imported this way:
-// import * as DeviceInfo from 'react-native-device-info';
+// import DeviceInfo from 'react-native-device-info';
 
-export function getUniqueID(): string;
-export function getManufacturer(): string;
-export function getBrand(): string;
-export function getModel(): string;
-export function getDeviceId(): string;
-export function getSystemName(): string;
-export function getSystemVersion(): string;
-export function getBundleId(): string;
-export function getApplicationName(): string;
-export function getBuildNumber(): string;
-export function getVersion(): string;
-export function getReadableVersion(): string;
-export function getDeviceName(): string;
-export function getUserAgent(): string;
-export function getDeviceLocale(): string;
-export function getDeviceCountry(): string;
-export function getTimezone(): string;
-export function getInstanceID(): string;
-export function getInstallReferrer(): string;
-export function isEmulator(): boolean;
-export function isTablet(): boolean;
-export function getFontScale(): number;
-export function is24Hour(): boolean;
-export function isPinOrFingerprintSet(): (
-  cb: (isPinOrFingerprintSet: boolean) => void
-) => void;
-export function getFirstInstallTime(): number;
-export function getLastUpdateTime(): number;
-export function getSerialNumber(): string;
-export function getIPAddress(): Promise<string>;
-export function getMACAddress(): Promise<string>;
-export function getPhoneNumber(): string;
-export function getAPILevel(): number;
-export function getCarrier(): string;
-export function getTotalMemory(): number;
-export function getMaxMemory(): number;
-export function getTotalDiskCapacity(): number;
-export function getFreeDiskStorage(): number;
-export function getBatteryLevel(): Promise<number>;
-export function getInstallerPackageName(): string;
+export type DeviceType = 'Handset' | 'Tablet' | 'Tv' | 'Unknown';
+
+export type BatteryState = 'unknown' | 'unplugged' | 'charging' | 'full';
+
+export interface PowerState {
+  batteryLevel: number;
+  batteryState: BatteryState;
+  lowPowerMode: boolean;
+  [key: string]: any;
+}
+
+export interface LocationProviderInfo {
+  [key: string]: boolean;
+}
+
+declare const _default: {
+  getUniqueID: () => string;
+  getManufacturer: () => string;
+  getBrand: () => string;
+  getModel: () => string;
+  getDeviceId: () => string;
+  getSystemName: () => string;
+  getSystemVersion: () => string;
+  getBuildId: () => string;
+  getBundleId: () => string;
+  getApplicationName: () => string;
+  getBuildNumber: () => string;
+  getVersion: () => string;
+  getReadableVersion: () => string;
+  getDeviceName: () => string;
+  getUserAgent: () => string;
+  getDeviceLocale: () => string;
+  getPreferredLocales: () => Array<string>;
+  getDeviceCountry: () => string;
+  getTimezone: () => string;
+  getInstanceID: () => string;
+  getInstallReferrer: () => string | null;
+  isEmulator: () => boolean;
+  isTablet: () => boolean;
+  getFontScale: () => number;
+  is24Hour: () => boolean;
+  isPinOrFingerprintSet(): (
+    cb: (isPinOrFingerprintSet: boolean) => void
+  ) => void;
+  hasNotch: () => boolean;
+  getFirstInstallTime: () => number;
+  getLastUpdateTime: () => number;
+  getSerialNumber: () => string;
+  getIPAddress: () => Promise<string>;
+  getCameraPresence: () => Promise<boolean>;
+  getMACAddress: () => Promise<string>;
+  getPhoneNumber: () => string;
+  getAPILevel: () => number;
+  getCarrier: () => string;
+  getTotalMemory: () => number;
+  getMaxMemory: () => number;
+  getTotalDiskCapacity: () => number;
+  getFreeDiskStorage: () => number;
+  getBatteryLevel: () => Promise<number>;
+  getPowerState: () => Promise<PowerState>;
+  isBatteryCharging: () => Promise<boolean>;
+  isLandscape: () => boolean;
+  isAirPlaneMode: () => Promise<boolean>;
+  getDeviceType: () => DeviceType;
+  isAutoDateAndTime: () => Promise<boolean>;
+  isAutoTimeZone: () => Promise<boolean>;
+  supportedABIs: () => string[];
+  hasSystemFeature: (feature: string) => Promise<boolean>;
+  getSystemAvailableFeatures: () => Promise<string[]>;
+  isLocationEnabled: () => Promise<boolean>;
+  getAvailableLocationProviders: () => Promise<LocationProviderInfo>;
+  getInstallerPackageName: () => string;
+};
+
+export default _default;
